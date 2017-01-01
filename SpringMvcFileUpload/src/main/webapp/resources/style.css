@@ -3,3 +3,8 @@
 body {
 	background-color:#DDDDDD;
 }
+
+.errors {
+	background-color:#FF4444;
+	font-weight: bold;
+}

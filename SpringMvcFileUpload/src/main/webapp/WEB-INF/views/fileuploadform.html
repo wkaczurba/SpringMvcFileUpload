@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link type="text/css" th:href="@{/resources/style.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>Fileupload form... </h1>
+
+
+<form method="POST" th:object="${fileUploadForm}" enctype="multipart/form-data">
+  <div class="errors" th:if="${#fields.hasErrors('*')}">
+    <ul>
+      <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+    </ul>
+  </div>
+
+  <label th:class="${#fields.hasErrors('picture')}? 'error'">Picture:</label>
+  
+  <!-- <input type="file" th:field="*{profilePicture}" th:class="${#fields.hasErrors('profilePicture')} ? 'error'" /><br /> -->
+  <input type="file" th:field="*{picture}" th:class="${#fields.hasErrors('picture')} ? 'error'" /><br />
+  
+  <input type="submit" value="Send" />
+</form>
+
+</body>
+</html>
