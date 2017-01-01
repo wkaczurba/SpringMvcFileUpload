@@ -20,7 +20,7 @@ public class RunningInitializer extends AbstractAnnotationConfigDispatcherServle
 	@Override
 	protected String[] getServletMappings() {
 		// TODO Auto-generated method stub
-		return null;
+		return new String[]{ "/" };
 	}
 
 		
