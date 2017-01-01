@@ -57,10 +57,10 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	
 	// TODO: Enable 
 	// Multipart-handling
-	//@Bean
-	//public MultipartResolver multipartResolver() {
-	//	return new StandardServletMultipartResolver();
-	//}
+	@Bean
+	public MultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
+	}
 	
 	// Handling of static content
 	@Override
