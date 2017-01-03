@@ -3,9 +3,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link type="text/css" th:href="@{/resources/style.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>File processed... done.</h1>
 <!--  TODO: CSS and other stuff...  -->
+
+<b>Image uploaded:</b>
+  <img th:src="@{/uploadedImages/{filename}(filename=${filename})}">
 </body>
 </html>

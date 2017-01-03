@@ -2,8 +2,15 @@ package running.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+
 import javax.validation.Valid;
 import org.springframework.validation.Errors;
 
@@ -22,18 +29,35 @@ public class RunnerController {
 	}
 	
 	@RequestMapping(value="/fileuploadform", method=RequestMethod.POST)
-	public String fileuploadformProcessing(@Valid FileUploadForm fileUploadForm, Errors errors) {
+	public String fileuploadformProcessing(@Valid FileUploadForm fileUploadForm, Errors errors) throws IllegalStateException, IOException {
 		if (errors.hasErrors()) {
 			System.out.println("Errors...");
 			return "fileuploadform";
 		}
+		MultipartFile file = fileUploadForm.getPicture();
+		
+		String originalFileNameOnly = Paths.get(
+					fileUploadForm.getPicture().getOriginalFilename())
+						.getFileName()
+						.toString();
+		File destination = new File("c:\\tmp\\runner\\saved\\" + originalFileNameOnly);
+		
 		// TODO: Try doing validation here...
+		System.out.println("MultipartFile.getName: " + file.getName());
+		System.out.println("MultipartFile.getOriginalName: " + file.getOriginalFilename());
 		System.out.println("FIlesize: " + fileUploadForm.getPicture().getSize());
-		return "redirect:/processed";
+		System.out.println("originalFileNameOnly:" + originalFileNameOnly);
+		fileUploadForm.getPicture().transferTo(destination);
+		return "redirect:/processed/" + originalFileNameOnly;
 	}
 	
-	@RequestMapping(value="/processed")
-	public String fileuploadformProcessed() {
+	// {filename} truncates dots, so filextension is gone.
+	// {filename:.+} does not truncate dots.
+	@RequestMapping(value="/processed/{filename:.+}")
+	public String fileuploadformProcessed(@PathVariable String filename, Model model) {
+		System.out.println("In: /processed/" + filename);
+		System.out.println("filename: " + filename);
+		model.addAttribute("filename", filename);
 		return "processed";
 	}
 
