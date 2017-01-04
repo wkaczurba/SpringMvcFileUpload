@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import running.Runner;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,7 +67,7 @@ public class RunnerController {
 	// Lets handle only IDs with 0...2:
 	@RequestMapping(value="/lookup/{id}")
 	public String lookup(@PathVariable int id, Model model) {
-		if (id < 2) {
+		if (id < 3) {
 			model.addAttribute("id", id);
 			return "lookup";
 		} else {
@@ -73,8 +76,39 @@ public class RunnerController {
 	}
 	// TODO: Process form + Validate the form.
 	
-	/*@RequestMapping(value="/customerror")
-	public ModelAndView customError(Model model) {
-		return "customerror";
-	}*/
+	@RequestMapping(value="/redirectExASource")
+	public String redirectExampleASource(Model model) {
+		// TO WORK ON...
+		System.out.println("redirectExASource");
+		model.addAttribute("value", "3");
+		return "redirect:/redirectExADestination/{value}"; // it should call "redirectDestination/3"
+	}
+	
+	@RequestMapping(value="/redirectExADestination/{value}")
+	public String redirectExampleADestination(@PathVariable int value, Model model) {
+		System.out.println("redirectExADestination; value:" + value);		
+
+		return "redirectedExA";
+	}
+	
+	@RequestMapping(value="/redirectExBSource")
+	public String redirectExBSource(RedirectAttributes model) {
+		Runner runner = new Runner("tomaz", "Tomasz", "Mazowiecki");
+		
+		model.addFlashAttribute("flashAttrRunner", runner);
+		System.out.println("redirectExBSource");
+		return "redirect:/redirectExBDestination";
+	}
+	
+	@RequestMapping(value="/redirectExBDestination")
+	public String redirectExBDestination(Model model) {
+		System.out.println("redirectExBDestination");
+		if (model.containsAttribute("flashAttrRunner")) {
+			System.out.println("found flashAttrRunner!; details: " + model.asMap().get("flashAttrRunner").toString()); 
+		} else {
+			System.out.println("no flashAttrRunner found.");
+		}
+		return "redirectedExB";
+		
+	}
 }

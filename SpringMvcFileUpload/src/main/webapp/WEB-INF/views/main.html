@@ -11,8 +11,12 @@
 <h1>Main...</h1>
 
 <ul>
-  <li><a th:href="@{/fileuploadform}">File uploading...</a></li>
-  <li>
+    <li>File Upload demo:
+    <ul>
+      <li><a th:href="@{/fileuploadform}">File uploading...</a></li>
+    </ul>
+    
+  <li>Examples of Exceptions:
     <ul>
       <li><a th:href="@{/lookup/0}">Lookup id=0</a></li>
       <li><a th:href="@{/lookup/1}">Lookup id=1</a></li>
@@ -20,8 +24,23 @@
       <li><a th:href="@{/lookup/3}">Lookup id=3 (Throws exception that translates into BAD REQUEST/Not found; Response from AppWideException)</a></li>
     </ul>
   </li>
+  
+  <li>Example of AppWide Exception coming from AnotherController
+    <ul>
+      <li><a th:href="@{/exampleException}">exampleException handled by AppWideException -> customerror</a><br /></li>
+    </ul>
+  </li>
+  
+  <li>Examples of redirection + passing data.
+    <ul>
+      <li><a th:href="@{/redirectExASource}">Redirect (A) + passing args as arguemnts</a><br /></li>
+      <li><a th:href="@{/redirectExBSource}">Redirect (B) + passing flash arguments through session</a><br /></li>
+    </ul>
+  </li>
 </ul>
-<a th:href="@{/exampleException}">Another exampleException handled by AppWideException -> customerror</a>
+
+
+
 
 </body>
 </html>

@@ -10,7 +10,7 @@ public class RunningInitializer extends AbstractAnnotationConfigDispatcherServle
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
+		// TODO: Add applicationContext config whenever it is needed.
 		return null;
 	}
 
@@ -21,13 +21,12 @@ public class RunningInitializer extends AbstractAnnotationConfigDispatcherServle
 
 	@Override
 	protected String[] getServletMappings() {
-		// TODO Auto-generated method stub
 		return new String[]{ "/" };
 	}
 	
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
-		// TODO: page 203
+		// page 203 for a reference.
 		registration.setMultipartConfig(new MultipartConfigElement("c:\\tmp\\runner\\uploads", 2097152, 4194304, 0));
 	}
 

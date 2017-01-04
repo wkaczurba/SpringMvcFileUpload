@@ -53,9 +53,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		viewResolver.setTemplateEngine(templateEngine());
 		return viewResolver;
 	}
-	
-	
-	// TODO: Enable 
+	 
 	// Multipart-handling
 	@Bean
 	public MultipartResolver multipartResolver() {
@@ -67,8 +65,6 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
-	// TODO: Map resources.
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
