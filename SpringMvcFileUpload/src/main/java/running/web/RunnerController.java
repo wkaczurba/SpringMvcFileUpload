@@ -61,5 +61,15 @@ public class RunnerController {
 		return "processed";
 	}
 
+	// Lets handle only IDs with 0...2:
+	@RequestMapping(value="/lookup/{id}")
+	public String lookup(@PathVariable int id, Model model) {
+		if (id < 2) {
+			model.addAttribute("id", id);
+			return "lookup";
+		} else {
+			throw new LookupIdNotFoundException();
+		}
+	}
 	// TODO: Process form + Validate the form.
 }
