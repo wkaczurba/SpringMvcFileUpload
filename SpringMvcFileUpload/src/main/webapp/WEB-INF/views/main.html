@@ -17,11 +17,11 @@
       <li><a th:href="@{/lookup/0}">Lookup id=0</a></li>
       <li><a th:href="@{/lookup/1}">Lookup id=1</a></li>
       <li><a th:href="@{/lookup/2}">Lookup id=2</a></li>
-      <li><a th:href="@{/lookup/3}">Lookup id=3 (Invalid try this one)</a></li>
-      
+      <li><a th:href="@{/lookup/3}">Lookup id=3 (Throws exception that translates into BAD REQUEST/Not found; Response from AppWideException)</a></li>
     </ul>
   </li>
 </ul>
+<a th:href="@{/exampleException}">Another exampleException handled by AppWideException -> customerror</a>
 
 </body>
 </html>
