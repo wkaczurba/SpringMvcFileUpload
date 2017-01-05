@@ -1,6 +1,8 @@
 # SpringMvcFileUpload
 
-File upload (MultipartFile)
-Handling exceptions:
-  -> using standard errors webpage
-  -> using AppWideExceptionHandler (@ControllerAdvice)
+File upload (MultipartFile)<br>
+Handling exceptions:<br>
+  -> using standard errors webpage<br>
+  -> using AppWideExceptionHandler (@ControllerAdvice)<br>
+  
+  
